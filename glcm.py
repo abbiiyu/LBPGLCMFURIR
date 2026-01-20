@@ -28,13 +28,13 @@ if uploaded_file is not None:
     st.dataframe(pd.DataFrame(lbp).astype(int)) 
 
     # 2. MATRIKS GLCM
-    st.subheader("2. Matriks GLCM (Co-occurrence)")
+    st.subheader("2. Matriks GLCM")
     glcm = graycomatrix(img_array, distances=[1], angles=[0], levels=256)
     glcm_2d = glcm[:, :, 0, 0]
     st.dataframe(pd.DataFrame(glcm_2d))
 
     # 3. MATRIKS FOURIER TRANSFORM
-    st.subheader("3. Matriks Fourier Transform (Magnitude)")
+    st.subheader("3. Matriks Fourier Transform")
     f_transform = np.fft.fft2(img_array)
     f_shift = np.fft.fftshift(f_transform)
     # Kita tampilkan Magnitudenya (Absolut) agar angkanya tidak terlalu kompleks
@@ -45,4 +45,5 @@ if uploaded_file is not None:
     st.info("""
     **Kenapa tampilannya dipotong?** Secara default, jika gambar Anda berukuran 512x512, maka ada 262.144 angka. 
     Streamlit menggunakan tabel interaktif (Dataframe) di atas agar Anda bisa **scroll ke kanan dan ke bawah** untuk melihat nilainya tanpa merusak tampilan layar.
+
     """)
